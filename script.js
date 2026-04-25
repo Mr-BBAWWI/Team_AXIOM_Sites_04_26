@@ -128,25 +128,6 @@ returns variables for Pixel Crushers Dialogue System`,
 stores telemetry in Firestore for debugging and design review`
 };
 
-const refactors = {
-  entry: {
-    title: "진입점 통일",
-    copy: "빌드가 시작하는 관리자 씬과 에디터에서 테스트하는 관리자 씬이 어긋나면 저장 복원, 초기 gameplay 씬, 서비스 참조가 달라질 수 있습니다."
-  },
-  state: {
-    title: "상태 저장 경계",
-    copy: "GameServices에 등록되는 영구 서비스와 DontDestroyOnLoad 싱글톤이 동시에 존재합니다. 저장 대상과 세션 대상의 경계를 명확히 나눠야 합니다."
-  },
-  classes: {
-    title: "거대 클래스 분리",
-    copy: "FreeChatSceneController는 UI, 백엔드, 상태, 결과 처리까지 맡고 있습니다. API 클라이언트, 세션 모델, 화면 컨트롤러로 나누면 후반부 확장이 쉬워집니다."
-  },
-  ids: {
-    title: "ID 규칙 통합",
-    copy: "NPC 숫자 ID, FreeChat NPC ID, QuestDefinition ID, puzzleEntryKey가 서로 다른 규칙을 사용합니다. 검증 스크립트와 명명 규칙 문서가 필요합니다."
-  }
-};
-
 function setActive(buttons, activeButton) {
   buttons.forEach((button) => {
     const isActive = button === activeButton;
@@ -208,15 +189,5 @@ document.querySelectorAll(".endpoint").forEach((button) => {
     if (!code) return;
     setActive(document.querySelectorAll(".endpoint"), button);
     document.getElementById("endpoint-code").textContent = code;
-  });
-});
-
-document.querySelectorAll(".refactor-item").forEach((button) => {
-  button.addEventListener("click", () => {
-    const data = refactors[button.dataset.refactor];
-    if (!data) return;
-    setActive(document.querySelectorAll(".refactor-item"), button);
-    document.getElementById("refactor-title-live").textContent = data.title;
-    document.getElementById("refactor-copy").textContent = data.copy;
   });
 });
